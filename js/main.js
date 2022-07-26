@@ -21,15 +21,15 @@ if(cantidadPrestamos<=2){
         prestamo.cantidadCuotas = parseInt(prompt("ingresa la cantidad de cuotas que queres pagar (maximo 60)"))
         prestamo.interes = parseFloat(prompt("ingresa el interes anual que queres pagar")) / 100
 
-        function tasa (primerNumero){
+        function tasa (interes){
         return (1 + prestamo.interes) ** (1/12) - 1
         }; 
 
-        function cuotaMensual (primerNumero, segundoNumero, tercerNumero){
+        function cuotaMensual (capital, interes, cuotas){
         prestamo.cuotaMes = (tasa(prestamo.interes) * prestamo.capital) / (1 - (1 + tasa(prestamo.interes)) ** - prestamo.cantidadCuotas)
         }; 
 
-        function devolucionTotal(primerNumero, segundoNumero){
+        function devolucionTotal(cuotaMensual, cuotas){
         prestamo.devolucionTotal = prestamo.cuotaMes * prestamo.cantidadCuotas    
         };
 
@@ -40,11 +40,16 @@ if(cantidadPrestamos<=2){
                 devolucionTotal(prestamo.cuotaMes, prestamo.cantidadCuotas) 
                 Prestamos.push(prestamo)  
                 for (const prestamo of Prestamos){
-                    alert("los datos de tu prestamo son: \n Capital: $ " + prestamo.capital + 
+                    /*alert("los datos de tu prestamo son: \n Capital: $ " + prestamo.capital + 
                         "\n Interes: " + prestamo.interes * 100 + "%" 
                         + "\n Cantidad de Cuotas: " + prestamo.cantidadCuotas
                         + "\n Cuota Mensual: $ " + prestamo.cuotaMes.toFixed(2) + 
-                        "\n Devolución total: $" + prestamo.devolucionTotal.toFixed(2))
+                        "\n Devolución total: $" + prestamo.devolucionTotal.toFixed(2))*/
+                        let card = document.createElement("div")
+                        card.innerHTML=`<h3>Solicitaste: $${prestamo.capital}</h3>
+                                        <p>vas a pagar: $${prestamo.cuotaMes.toFixed(2)}</p>
+                                        <p>en: ${prestamo.cantidadCuotas} cuotas</p>`
+                        document.body.append(card) 
                 }
            }
            else{
