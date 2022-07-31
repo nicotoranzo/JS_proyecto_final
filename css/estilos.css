@@ -1,0 +1,41 @@
+.principal {
+  border: 2px solid #2B4BEB;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.principal p {
+  text-align: justify;
+  text-justify: auto;
+}
+
+.header {
+  background-color: #2B4BEB;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.header a:link {
+  color: #fff;
+
+}
+
+.header a:visited {
+  color: #fff;
+}
+
+.header a:hover {
+  color: #2B4BEB;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.titulos, .subtitulos {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.subtitulos {
+  font-size: 1.2rem;
+}
