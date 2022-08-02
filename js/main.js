@@ -65,33 +65,37 @@ function prestamo(){
 
                    }
                    else{
-                        let card = document.createElement("div")
-                        card.innerHTML=`<h3>Excediste la cantidad de cuotas habilitadas</h3>                                        `
-                        document.body.append(card) 
+                        let contenedor = document.getElementById("contenedor")
+                        contenedor.innerHTML=`<h3>Excediste la cantidad de cuotas habilitadas</h3>                                        `
+                        contenedor.className= "container principal"
+                        contenedor.append(contenedor)
                    } 
                 }
                 else{
-                    let card = document.createElement("div")
-                    card.innerHTML=`<h3>El monto solicitado es insuficiente. El minimo es $10.000</h3>                                        `
-                    document.body.append(card) 
+                    let contenedor = document.getElementById("contenedor")
+                    contenedor.innerHTML=`<h3>El monto solicitado es insuficiente. El minimo es $10.000</h3>                                        `
+                    contenedor.className= "container principal"
+                    contenedor.append(contenedor) 
                 }
              
                 for (const prestamo of prestamos){
-                    let card = document.createElement("div")
-                        card.innerHTML=`<h3>Solicitaste: $${prestamo.capital}</h3>
+                    let contenedor = document.getElementById("contenedor")
+                        contenedor.innerHTML=`<h3>Solicitaste: $${prestamo.capital}</h3>
                         <p>el interes que queres pagar es ${prestamo.interes * 100}%</p>
                         <p>en: ${prestamo.cantidadCuotas} cuotas</p>
                         <p>vas a pagar: $${prestamo.cuotaMes.toFixed(2)}</p>
                         <p>vas a devolver en total $${prestamo.devolucionTotal.toFixed(2)}</p>`
-                    document.body.append(card) 
+                    contenedor.className= "container principal"
+                    contenedor.append(contenedor) 
                 }   
             }
     }
 }
     else{
-        let card = document.createElement("div")
-        card.innerHTML=`<h3>El maximo de prestamos a solicitar es 2</h3>                                        `
-        document.body.append(card)
+        let contenedor = document.getElementById("contenedor")
+        contenedor.innerHTML='El maximo de prestamos a solicitar es 2'
+        contenedor.className= "container principal"
+        contenedor.append(contenedor)
     }
 }
 
