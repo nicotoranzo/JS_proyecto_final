@@ -19,9 +19,13 @@ function Prestamo(capital, cantidadCuotas, interes, cuotaMes, devolucionTotal) {
     this.devolucionTotal = devolucionTotal
 }
 
+
+
 function prestamo(){
     if(cantidadPrestamos<=2){
 
+        let display = document.getElementById("display")
+        display.className="container principal mb-2 d-block"
         let prestamos = []
 
         for(let i = 0; i < cantidadPrestamos; i++){
@@ -66,15 +70,15 @@ function prestamo(){
                    }
                    else{
                         let contenedor = document.getElementById("contenedor")
-                        contenedor.innerHTML=`<h3>Excediste la cantidad de cuotas habilitadas</h3>                                        `
-                        contenedor.className= "container principal"
+                        contenedor.innerHTML="Excediste la cantidad de cuotas habilitadas"
+                        contenedor.className= "container principal subtitulos"
                         contenedor.append(contenedor)
                    } 
                 }
                 else{
                     let contenedor = document.getElementById("contenedor")
-                    contenedor.innerHTML=`<h3>El monto solicitado es insuficiente. El minimo es $10.000</h3>                                        `
-                    contenedor.className= "container principal"
+                    contenedor.innerHTML="El monto solicitado es insuficiente. El minimo es $10.000"
+                    contenedor.className= "container principal subtitulos"
                     contenedor.append(contenedor) 
                 }
              
