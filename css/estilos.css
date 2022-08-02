@@ -35,6 +35,10 @@
   font-weight: bold;
   font-size: 1.5rem;
 }
+.main {
+  border: 2px solid;
+  background-color: #fff;
+}
 
 .subtitulos {
   font-size: 1.2rem;
