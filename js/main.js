@@ -22,10 +22,18 @@ function Prestamo(capital, cantidadCuotas, interes, cuotaMes, devolucionTotal) {
 
 
 function prestamo(){
+
+    let contenedor = document.getElementById("contenedor")
+    function classContenedor() {
+        contenedor.className= "container principal subtitulos"
+        contenedor.append(contenedor)
+    }
+
     if(cantidadPrestamos<=2){
 
         let display = document.getElementById("display")
-        display.className="container principal mb-2 d-block"
+        display.classList.remove("d-none")
+
         let prestamos = []
 
         for(let i = 0; i < cantidadPrestamos; i++){
@@ -60,6 +68,8 @@ function prestamo(){
                 prestamo.devolucionTotal = cuotaMensual * cuotas    
                 };
 
+                
+
                 if(prestamo.capital >= 10000){
                     if(prestamo.cantidadCuotas <=60){
                         tasa(prestamo.interes)
@@ -68,38 +78,30 @@ function prestamo(){
                         prestamos.push(prestamo)  
 
                    }
-                   else{
-                        let contenedor = document.getElementById("contenedor")
+                   else{                        
                         contenedor.innerHTML="Excediste la cantidad de cuotas habilitadas"
-                        contenedor.className= "container principal subtitulos"
-                        contenedor.append(contenedor)
+                        classContenedor()
                    } 
                 }
                 else{
-                    let contenedor = document.getElementById("contenedor")
                     contenedor.innerHTML="El monto solicitado es insuficiente. El minimo es $10.000"
-                    contenedor.className= "container principal subtitulos"
-                    contenedor.append(contenedor) 
+                    classContenedor()
                 }
              
-                for (const prestamo of prestamos){
-                    let contenedor = document.getElementById("contenedor")
+                for (const prestamo of prestamos){                    
                         contenedor.innerHTML=`<h3>Solicitaste: $${prestamo.capital}</h3>
                         <p>el interes que queres pagar es ${prestamo.interes * 100}%</p>
                         <p>en: ${prestamo.cantidadCuotas} cuotas</p>
                         <p>vas a pagar: $${prestamo.cuotaMes.toFixed(2)}</p>
                         <p>vas a devolver en total $${prestamo.devolucionTotal.toFixed(2)}</p>`
-                    contenedor.className= "container principal"
-                    contenedor.append(contenedor) 
+                    classContenedor() 
                 }   
             }
     }
 }
     else{
-        let contenedor = document.getElementById("contenedor")
         contenedor.innerHTML='El maximo de prestamos a solicitar es 2'
-        contenedor.className= "container principal"
-        contenedor.append(contenedor)
+        classContenedor()
     }
 }
 
