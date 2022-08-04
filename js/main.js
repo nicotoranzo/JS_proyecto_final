@@ -95,8 +95,9 @@ function prestamo(){
                         classContenedor()
                         let node= document.createElement("li")
                         node.className= "list-group-item"                        
-                        node.innerHTML = `<h3>Solicitaste: $${prestamo.capital}</h3>
-                        <p>el interes que queres pagar es ${prestamo.interes * 100}%</p>
+                        node.innerHTML = `<h3>Solicitaste: 
+                        $${prestamo.capital}</h3>
+                        <p>el interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
                         <p>en: ${prestamo.cantidadCuotas} cuotas</p>
                         <p>vas a pagar: 
                         $${prestamo.cuotaMes.toLocaleString(undefined, {
