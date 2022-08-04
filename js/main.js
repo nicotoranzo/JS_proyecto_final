@@ -2,7 +2,7 @@
 
 let cantidadPrestamos = 0
 
-let formulario = document.getElementById("formulario")
+const formulario = document.getElementById("formulario")
 formulario.addEventListener("submit", validateForm)
 function validateForm(event){
     event.preventDefault()
@@ -23,11 +23,13 @@ function Prestamo(capital, cantidadCuotas, interes, cuotaMes, devolucionTotal) {
 
 function prestamo(){
 
-    let contenedor = document.getElementById("contenedor")
+    const contenedor = document.getElementById("contenedor")
+    const lista = document.getElementById("lista")
     function classContenedor() {
-        contenedor.className= "container principal subtitulos"
-        contenedor.append(contenedor)
-    }
+        contenedor.className= "container principal subtitulos p-3"
+        lista.className="list-group list-group-flush"
+            }
+
 
     if(cantidadPrestamos<=2){
 
@@ -88,13 +90,26 @@ function prestamo(){
                     classContenedor()
                 }
              
-                for (const prestamo of prestamos){                    
-                        contenedor.innerHTML=`<h3>Solicitaste: $${prestamo.capital}</h3>
+                for (const prestamo of prestamos){
+
+                        classContenedor()
+                        let node= document.createElement("li")
+                        node.className= "list-group-item"                        
+                        node.innerHTML = `<h3>Solicitaste: $${prestamo.capital}</h3>
                         <p>el interes que queres pagar es ${prestamo.interes * 100}%</p>
                         <p>en: ${prestamo.cantidadCuotas} cuotas</p>
-                        <p>vas a pagar: $${prestamo.cuotaMes.toFixed(2)}</p>
-                        <p>vas a devolver en total $${prestamo.devolucionTotal.toFixed(2)}</p>`
-                    classContenedor() 
+                        <p>vas a pagar: 
+                        $${prestamo.cuotaMes.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2})}</p>
+                        <p>vas a devolver en total 
+                            $${prestamo.devolucionTotal.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2})}</p>`
+                        lista.append(node)
+                        contenedor.append(lista)
+                        
+                        
                 }   
             }
     }
