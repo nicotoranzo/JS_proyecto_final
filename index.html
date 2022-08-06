@@ -34,6 +34,11 @@
 
     <div class="container principal pt-2 mb-3">
       <div class='row col-sm-12 mb-1'>
+        <form id="username">
+          <label class="form-label col-12 col-lg-6 titulos" for='username'>¿Como es tu nombre?</label>      
+          <input class="col-12 col-lg-4 main m-2" name='full-name' type='text'/>
+          <input class="col-12 col-lg-auto main m-2" type="submit" value="Enviar">          
+        </form>
         <form id="formulario">          
           <div class="row col-sm-12 mb-1 d-flex justify-content-lg-evenly">
             <label class="form-label col-12 col-lg-6 titulos" for='cantidadPrestamos'>¿Cuantos prestamos queres solicitar?</label>         
@@ -51,7 +56,7 @@
           </div>
           <div class="row col-sm-12 mb-1 mx-2">
             <label class="form-label col-12 col-lg-4" for='capital'>Capital (Minimo $10.000)</label>
-            <input class="col-12 col-lg-8 main mb-2" id='capital' name='full-name' type='number'/>
+            <input class="col-12 col-lg-8 main mb-2" id='capital' name='capital' type='number'/>
           </div>
           <div class='row col-sm-12 mb-1 mx-2'>
             <label class="form-label col-12 col-lg-4" for='cuotas'>Cuotas (Maximo 60)</label>
@@ -67,7 +72,7 @@
         </form>
       </div>
     </div>
-    <div id="maxPrestamo" class="d-none">Alcanzaste el maximo de prestamos posibles</div>
+    <div id="maxPrestamo" class="d-none"></div>
     <div id="contenedor">
       <ul id="lista"></ul>
     </div>
