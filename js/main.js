@@ -71,14 +71,15 @@ function prestamo(){
             };
                 
         if (prestamos.length < 2){
-        /*este if es para que no pueda crear mas prestamos despues de 2*/        
+        /*este if es para que no pueda crear mas prestamos despues de 2
+        pero si pone 1 le deja llegar a 2, falta resolver*/        
             if(prestamo.capital >= 10000){
                 if(prestamo.cantidadCuotas <=60){
                     tasa(prestamo.interes)
                     cuotaMensual(prestamo.capital, tasa(prestamo.interes), prestamo.cantidadCuotas)
                     devolucionTotal(prestamo.cuotaMes, prestamo.cantidadCuotas) 
                     prestamos.push(prestamo)
-                    console.log(prestamos)
+                    console.log(prestamos)//esto despues hay que borrarlo
 
                 }
                 else{                        
