@@ -20,7 +20,6 @@ function Prestamo(capital, cantidadCuotas, interes, cuotaMes, devolucionTotal) {
 }
 
 
-
 function prestamo(){
 
     const contenedor = document.getElementById("contenedor")
@@ -30,7 +29,6 @@ function prestamo(){
         lista.className="list-group list-group-flush"
             }
 
-
     if(cantidadPrestamos<=2){
 
         let display = document.getElementById("display")
@@ -38,8 +36,10 @@ function prestamo(){
 
         let prestamos = []
 
-        for(let i = 0; i < cantidadPrestamos; i++){
-
+        for(let i = 0; i < cantidadPrestamos -1; i++){ 
+            /*Sin el menos 1 creaba dos prestamos con el mismo input en vez
+            de esperar uno nuevo (no se porque) */
+  
             let prestamo = new Prestamo(0,0,0,0,0)
 
             prestamo.capital = 0
@@ -55,64 +55,69 @@ function prestamo(){
                 prestamo.cantidadCuotas = formPrestamo[1].value
                 prestamo.interes = formPrestamo[2].value / 100
                 prestar()
-
+                            
             }
 
-            function prestar(){
+        function prestar(){
 
-                function tasa (interes){
-                return (1 + interes) ** (1/12) - 1
-                }; 
-                function cuotaMensual (capital, interes, cuotas){
-                prestamo.cuotaMes = (tasa(interes) * capital) / (1 - (1 + tasa(interes)) ** - cuotas)
-                }; 
-                function devolucionTotal(cuotaMensual, cuotas){
-                prestamo.devolucionTotal = cuotaMensual * cuotas    
-                };
-
+            function tasa (interes){
+            return (1 + interes) ** (1/12) - 1
+            }; 
+            function cuotaMensual (capital, interes, cuotas){
+            prestamo.cuotaMes = (tasa(interes) * capital) / (1 - (1 + tasa(interes)) ** - cuotas)
+            }; 
+            function devolucionTotal(cuotaMensual, cuotas){
+            prestamo.devolucionTotal = cuotaMensual * cuotas    
+            };
                 
+        if (prestamos.length < 2){
+        /*este if es para que no pueda crear mas prestamos despues de 2*/        
+            if(prestamo.capital >= 10000){
+                if(prestamo.cantidadCuotas <=60){
+                    tasa(prestamo.interes)
+                    cuotaMensual(prestamo.capital, tasa(prestamo.interes), prestamo.cantidadCuotas)
+                    devolucionTotal(prestamo.cuotaMes, prestamo.cantidadCuotas) 
+                    prestamos.push(prestamo)
+                    console.log(prestamos)
 
-                if(prestamo.capital >= 10000){
-                    if(prestamo.cantidadCuotas <=60){
-                        tasa(prestamo.interes)
-                        cuotaMensual(prestamo.capital, tasa(prestamo.interes), prestamo.cantidadCuotas)
-                        devolucionTotal(prestamo.cuotaMes, prestamo.cantidadCuotas) 
-                        prestamos.push(prestamo)  
-
-                   }
-                   else{                        
-                        contenedor.innerHTML="Excediste la cantidad de cuotas habilitadas"
-                        classContenedor()
-                   } 
                 }
-                else{
-                    contenedor.innerHTML="El monto solicitado es insuficiente. El minimo es $10.000"
+                else{                        
+                    contenedor.innerHTML="Excediste la cantidad de cuotas habilitadas"
                     classContenedor()
-                }
-             
-                for (const prestamo of prestamos){
-
-                        classContenedor()
-                        let node= document.createElement("li")
-                        node.className= "list-group-item"                        
-                        node.innerHTML = `<h3>Solicitaste: 
-                        $${prestamo.capital}</h3>
-                        <p>el interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
-                        <p>en: ${prestamo.cantidadCuotas} cuotas</p>
-                        <p>vas a pagar: 
-                        $${prestamo.cuotaMes.toLocaleString(undefined, {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2})}</p>
-                        <p>vas a devolver en total 
-                            $${prestamo.devolucionTotal.toLocaleString(undefined, {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2})}</p>`
-                        lista.append(node)
-                        contenedor.append(lista)
-                        
-                        
-                }   
+                } 
             }
+            else{
+                contenedor.innerHTML="El monto solicitado es insuficiente. El minimo es $10.000"
+                classContenedor()
+            }
+        }
+        else{
+          let maxPrestamo = document.getElementById("maxPrestamo")
+          maxPrestamo.className="container principal subtitulos p-3 mb-3"
+        }    
+             
+            for (const prestamo of prestamos){
+
+                classContenedor()
+                let node= document.createElement("li")
+                node.className= "list-group-item"                        
+                node.innerHTML = `<h3>Solicitaste: 
+                $${prestamo.capital}</h3>
+                <p>El interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
+                <p>En: ${prestamo.cantidadCuotas} cuotas</p>
+                <p>Cada cuota será de: 
+                $${prestamo.cuotaMes.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2})}</p>
+                <p>Vas a devolver en total 
+                    $${prestamo.devolucionTotal.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2})}</p>`
+                lista.append(node)
+                contenedor.append(lista)
+                                    
+            }   
+        }
     }
 }
     else{
