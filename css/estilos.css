@@ -1,7 +1,12 @@
+
 .principal {
   border: 2px solid #2B4BEB;
   border-radius: 20px;
   background-color: #fff;
+}
+
+.height{
+  min-height: 68vh;
 }
 
 .principal p {
@@ -43,3 +48,6 @@
 .subtitulos {
   font-size: 1.2rem;
 }
+
+
+
