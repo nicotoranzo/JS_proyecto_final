@@ -38,6 +38,12 @@ localStorage.setItem("name",name)
 name = localStorage.getItem("name")
 }
 
+
+if (localStorage.getItem('name') !== null){
+    name = localStorage.getItem("name")        
+}
+
+
 const formulario = document.getElementById("formulario")
 formulario.addEventListener("submit", validateForm)
 function validateForm(event){
@@ -57,7 +63,7 @@ function classContenedor() {
 
 function prestamoNuevo(){    
     
-    if(cantidadPrestamos<=2){
+    if(cantidadPrestamos<=2 /*&& poner aca mayor a uno*/){
 
     let display = document.getElementById("display")
     display.classList.remove("d-none")        
@@ -100,26 +106,27 @@ function devolucionTotal(cuotaMensual, cuotas){
 prestamo.devolucionTotal = cuotaMensual * cuotas    
 };
 
-function deployPrestamos(){
-    let node= document.createElement("li")
-    node.className= "list-group-item"
-    node.innerHTML = `<h3>Solicitaste: 
-    $${prestamo.capital}</h3>
-    <p>El interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
-    <p>En: ${prestamo.cantidadCuotas} cuotas</p>
-    <p>Cada cuota será de: 
-    $${prestamo.cuotaMes.toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2})}</p>
-    <p>Vas a devolver en total 
-        $${prestamo.devolucionTotal.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2})}</p>`
-    lista.append(node)
-    contenedor.append(lista)
-}
 
 function prestar(){
+        let saveButton = document.getElementById("save-button")
+        saveButton.className="container pretty-button"
+        saveButton.addEventListener("click", guardarPrestamos)
+
+        function guardarPrestamos(){
+        Swal.fire({
+            title: "Hola " + name + ",",
+            text: 'Guardamos tu prestamo',
+            icon: 'success',
+            confirmButtonText: 'Cerrar',
+            width: "40%",
+            backdrop: "true",
+            timer: 3000,
+            timerProgressBar: true,
+            color: "#2B4BEB",
+            confirmButtonColor: "#2B4BEB",
+        })    
+        localStorage.setItem("guardaPrestamos", JSON.stringify(prestamos))
+        }
         if (prestamos.length < 2){
         /*este if es para que no pueda crear mas prestamos despues de 2
         pero si pone 1 le deja llegar a 2, falta resolver*/        
@@ -147,6 +154,7 @@ function prestar(){
                 } 
             }
             else{
+
                 Swal.fire({
                         title: "Hola " + name + ",",
                         text: 'El monto minimo a solicitar es $10.000',
@@ -181,56 +189,130 @@ function prestar(){
         for (const prestamo of prestamos){
 
             classContenedor()
-            deployPrestamos()    
+            let node= document.createElement("li")
+            node.className= "list-group-item"
+            node.innerHTML = `<h3>Solicitaste: 
+            $${prestamo.capital.toLocaleString(undefined,{minimumFractionDigits: 2,
+                maximumFractionDigits: 2})}</h3>
+            <p>El interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
+            <p>En: ${prestamo.cantidadCuotas} cuotas</p>
+            <p>Cada cuota será de: 
+            $${prestamo.cuotaMes.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2})}</p>
+            <p>Vas a devolver en total 
+                $${prestamo.devolucionTotal.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2})}</p>`
+            lista.append(node)
+            contenedor.append(lista)    
         }
 
-        let saveButton = document.getElementById("save-button")
-        saveButton.className="container pretty-button"
-        saveButton.addEventListener("click", guardarPrestamos)
-
-        function guardarPrestamos(){
-        localStorage.setItem("guardaPrestamos", JSON.stringify(prestamos))
-        }
+        
+        
 
 }
+
+
+
 
 let prestamosLS 
 
 function cargarPrestamos(){
     if (localStorage.getItem('guardaPrestamos') !== null) {
         // Carga la información
-        
-        prestamosLS = JSON.parse(localStorage.getItem('guardaPrestamos'));
-        console.log(prestamosLS)/*Esto despues hay que borrarlo*/
-        for (const prestamo of prestamosLS){
-        //si uso deployPrestamos() carga en 0 en vez de cargar el guardado    
-        classContenedor()
-        let node= document.createElement("li")
-        node.className= "list-group-item"
-        node.innerHTML = `<h3>Solicitaste: 
-        $${prestamo.capital}</h3>
-        <p>El interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
-        <p>En: ${prestamo.cantidadCuotas} cuotas</p>
-        <p>Cada cuota será de: 
-        $${prestamo.cuotaMes.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2})}</p>
-        <p>Vas a devolver en total 
-            $${prestamo.devolucionTotal.toLocaleString(undefined, {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2})}</p>`
-        lista.append(node)
-        contenedor.append(lista)
-        
-        }
-
+        Swal.fire({
+                title: "Hola " + name + ",",
+                text: '¿Queres cargar el prestamo guardado o borrarlo?',
+                icon: 'warning',
+                showDenyButton: true,
+                confirmButtonText: 'Cargar',
+                denyButtonText: "Borrar",
+                width: "40%",
+                backdrop: "true",
+                color: "#2B4BEB",
+                confirmButtonColor: "#2B4BEB",
+        }).then((result) => {
+            if(result.isConfirmed){
+                Swal.fire({
+                    title:"Cargamos los prestamos que simulaste la ultima vez!",
+                    width: "40%",
+                    backdrop: "true",
+                    color: "#2B4BEB",
+                    confirmButtonColor: "#2B4BEB",
+                    icon:"success",
+                })
+                prestamosLS = JSON.parse(localStorage.getItem('guardaPrestamos'));
+                console.log(prestamosLS)/*Esto despues hay que borrarlo*/
+                for (const prestamo of prestamosLS){
+                   
+                classContenedor()
+                let node= document.createElement("li")
+                node.className= "list-group-item"
+                node.innerHTML = `<h3>La ultima vez solicitaste: 
+                $${prestamo.capital}</h3>
+                <p>El interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
+                <p>En: ${prestamo.cantidadCuotas} cuotas</p>
+                <p>Cada cuota será de: 
+                $${prestamo.cuotaMes.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2})}</p>
+                <p>Vas a devolver en total 
+                    $${prestamo.devolucionTotal.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2})}</p>`
+                lista.append(node)
+                contenedor.append(lista)
+                }
+            }
+            else if(result.isDenied){
+                Swal.fire({
+                    title: "Borramos el prestamo.",
+                    text:'Podes simular uno nuevo.',
+                    width: "40%",
+                    backdrop: "true",
+                    color: "#2B4BEB",
+                    confirmButtonColor: "#2B4BEB",
+                    icon:"info",
+                })
+                localStorage.removeItem("guardaPrestamos")
+            }
+        })
     }
+}             
 
-}
 
 cargarPrestamos()
+fetch("https://api-dolar-argentina.herokuapp.com/api/dolarblue")
+.then( (resp) => resp.json() )
+.then( (data) => {
+        console.log(data)
+    })
 
-                                                 
+/*
+
+let data = {
+    service_id: 'service_thgpx3t',
+    template_id: 'service_thgpx3t',
+    user_id: 'KS82fBDaZBFAx1HUL',
+    template_params: {
+        'username': 'James',
+        'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
+    }
+};
+ 
+fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    type: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json'
+}).then(function() {
+    alert('Your mail is sent!');
+}).catch(function(error) {
+    alert('Oops... ' + JSON.stringify(error));
+});
+       
+
+                    */                    
                    
 
         
