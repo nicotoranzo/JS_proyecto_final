@@ -283,14 +283,32 @@ function cargarPrestamos(){
 
 
 cargarPrestamos()
-fetch("https://api-dolar-argentina.herokuapp.com/api/dolarblue")
-.then( (resp) => resp.json() )
+
+// falta corregir este fetch
+
+fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales").
+then( (resp) => resp.json() )
 .then( (data) => {
         console.log(data)
+        data.forEach((post) => {
+            if(post.casa.venta != 0 && post.casa.nombre !== "Argentina" && post.casa.nombre !== "Dolar"){
+            const dolar = document.createElement('li')
+            classContenedor()
+            dolar.className= "list-group-item"
+            dolar.innerHTML = `
+                <h4>${post.casa.nombre}</h4>
+                <p>${post.casa.venta}</p>
+            `
+            lista.append(dolar)
+            contenedor.append(lista)
+            }
+        })
+
     })
 
-/*
 
+
+/*
 let data = {
     service_id: 'service_thgpx3t',
     template_id: 'service_thgpx3t',
