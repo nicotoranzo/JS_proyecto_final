@@ -228,10 +228,13 @@ function cargarPrestamos(){
                 showDenyButton: true,
                 confirmButtonText: 'Cargar',
                 denyButtonText: "Borrar",
-                width: "40%",
+                //width: "40%",
                 backdrop: "true",
                 color: "#2B4BEB",
                 confirmButtonColor: "#2B4BEB",
+                customClass: {
+                    container: "swal",
+                } 
         }).then((result) => {
             if(result.isConfirmed){
                 Swal.fire({
