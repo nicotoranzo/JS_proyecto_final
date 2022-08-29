@@ -310,15 +310,16 @@ then( (resp) => resp.json() )
         console.log(data)
         data.forEach((post) => {
             if(post.casa.venta != 0 && post.casa.nombre !== "Argentina" && post.casa.nombre !== "Dolar"){
-            const dolar = document.createElement('li')
-            classContenedor()
-            dolar.className= "list-group-item"
-            dolar.innerHTML = `
-                <h4>${post.casa.nombre}</h4>
+            let dolar = document.getElementById("dolar")
+            let cotizaciones = document.getElementById("cotizaciones")
+            let nodeDolar = document.createElement('li')
+            nodeDolar.className= "list-group-item subtitulos"
+            nodeDolar.innerHTML = `
+                <p>${post.casa.nombre}</p>
                 <p>${post.casa.venta}</p>
             `
-            lista.append(dolar)
-            contenedor.append(lista)
+            cotizaciones.append(nodeDolar)
+            dolar.append(cotizaciones)
             }
         })
 

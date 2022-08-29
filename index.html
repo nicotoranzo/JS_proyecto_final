@@ -30,23 +30,38 @@
       </div>
     </div>
 
+    <!-- Dolar -->
+    <div id="dolar" class="container principal p-2 mb-3">
+      <div class="row d-flex justify-content-lg-center">
+        <ul id="cotizaciones" class="list-group list-group-horizontal"></ul>
+      </div>
+            
+    </div>
+    <!-- /Dolar -->
 
+    
     <div class="height">
+
+    <!-- Nombre-->  
       <div class="container principal pt-2 mb-3">      
           <form id="username">
-            <div class='row col-sm-12 mb-1 d-flex justify-content-lg-evenly'>
-              <label class="form-label col-12 col-lg-6 titulos" for='username'>¿Como es tu nombre?</label><input class="col-12 col-lg-4 main m-2" name='full-name' type='text'/>
+            <div class='row mb-3 mx-2 d-flex justify-content-lg-between'>
+              <label class="form-label col-12 col-lg-6 titulos" for='username'>¿Como es tu nombre?</label>
+              <input class="col-12 col-lg-4 main m-2" name='full-name' type='text'/>
               <input class="col-12 col-lg-auto main m-2" type="submit" value="Enviar">         
             </div>
           </form>
         </div>
+    <!-- /Nombre-->
+
+    <!-- Prestamo--> 
         <div class="container principal pt-2 mb-3">    
             <form id="formulario">          
-              <div class="row col-sm-12 mb-1 d-flex justify-content-lg-evenly">
-                <label class="form-label col-12 col-lg-6 titulos" for='cantidadPrestamos'>¿Cuantos prestamos queres solicitar?</label>         
+              <div class="row mb-3 mx-2 d-flex justify-content-lg-between">
+                <label class="form-label col-12 col-lg-6 titulos" for='cantidadPrestamos'>¿Cuantos prestamos queres solicitar?</label>
                 <input class="col-12 col-lg-4 main m-2" id='cantidadPrestamos' name='full-name' type='number'/>
-                <input class="col-12 col-lg-auto main m-2" type="submit" value="Enviar"> 
-              </div>
+                <input class="col-12 col-lg-auto main m-2" type="submit" value="Enviar">
+              </div>               
             </form>
         </div>    
         <div id="display" class="container principal mb-3 d-none">
@@ -76,6 +91,8 @@
           <ul id="lista"></ul>
           <button id="save-button" class="d-none">Guardar prestamos</button>
         </div>
+    <!-- /Prestamo-->    
+
     </div>
         
     <!-- Footer -->
