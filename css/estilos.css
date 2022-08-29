@@ -6,7 +6,7 @@
 }
 
 .height{
-  min-height: 68vh;
+  min-height: 60vh;
 }
 
 .principal p {
@@ -49,14 +49,24 @@
   font-size: 1.2rem;
 }
 
-.swal {
-  width: 40%;
-}
-@media all and (max-width: 768px) {
-  .swal{
-      width: 90%;
-  }
+.list {
+  color: #2B4BEB;
+  font-weight: bold;
+  background-color: #fff;
+  border: none;
 }
 
+.list :hover {
+  color: #111;
+}
+.swal {
+  width: 100%;
+}
+
+.btnModified {
+  background-color: #2B4BEB;
+  color: #fff;
+  font-weight: bold;
+}
 
 

@@ -113,7 +113,7 @@ prestamo.devolucionTotal = cuotaMensual * cuotas
 
 function prestar(){
         let saveButton = document.getElementById("save-button")
-        saveButton.className="container pretty-button"
+        saveButton.className="container btn btnModified"
         saveButton.addEventListener("click", guardarPrestamos)
 
         function guardarPrestamos(){
@@ -313,10 +313,9 @@ then( (resp) => resp.json() )
             let dolar = document.getElementById("dolar")
             let cotizaciones = document.getElementById("cotizaciones")
             let nodeDolar = document.createElement('li')
-            nodeDolar.className= "list-group-item subtitulos"
+            nodeDolar.className= "list-group-item list-group-item-success list"
             nodeDolar.innerHTML = `
-                <p>${post.casa.nombre}</p>
-                <p>${post.casa.venta}</p>
+                <p>${post.casa.nombre}: $${post.casa.venta}</p>
             `
             cotizaciones.append(nodeDolar)
             dolar.append(cotizaciones)
