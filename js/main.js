@@ -24,7 +24,9 @@ function validateUsername(event) {
         title: "¡Gracias " + name + "!",
         icon: 'success',
         confirmButtonText: 'Cerrar',
-        width: "40%",
+        customClass: {
+            container: "swal",
+        }, 
         backdrop: "true",
         timer: 2000,
         color: "#2B4BEB",
@@ -74,7 +76,9 @@ function prestamoNuevo(){
             text: 'Solo podes solicitar hasta 2 prestamos',
             icon: 'error',
             confirmButtonText: 'Cerrar',
-            width: "40%",
+            customClass: {
+                container: "swal",
+            },
             backdrop: "true",
             timer: 3000,
             timerProgressBar: true,
@@ -118,7 +122,9 @@ function prestar(){
             text: 'Guardamos tu prestamo',
             icon: 'success',
             confirmButtonText: 'Cerrar',
-            width: "40%",
+            customClass: {
+                container: "swal",
+            },
             backdrop: "true",
             timer: 3000,
             timerProgressBar: true,
@@ -144,7 +150,9 @@ function prestar(){
                         text: 'Excediste la cantidad de cuotas habilitadas',
                         icon: 'error',
                         confirmButtonText: 'Cerrar',
-                        width: "40%",
+                        customClass: {
+                            container: "swal",
+                        },
                         backdrop: "true",
                         timer: 3000,
                         timerProgressBar: true,
@@ -160,7 +168,9 @@ function prestar(){
                         text: 'El monto minimo a solicitar es $10.000',
                         icon: 'error',
                         confirmButtonText: 'Cerrar',
-                        width: "40%",
+                        customClass: {
+                            container: "swal",
+                        },
                         backdrop: "true",
                         timer: 3000,
                         timerProgressBar: true,
@@ -175,7 +185,9 @@ function prestar(){
                         text: 'Alcanzaste el maximo de prestamos posibles',
                         icon: 'error',
                         confirmButtonText: 'Cerrar',
-                        width: "40%",
+                        customClass: {
+                            container: "swal",
+                        },
                         backdrop: "true",
                         timer: 3000,
                         timerProgressBar: true,
@@ -228,18 +240,19 @@ function cargarPrestamos(){
                 showDenyButton: true,
                 confirmButtonText: 'Cargar',
                 denyButtonText: "Borrar",
-                //width: "40%",
                 backdrop: "true",
                 color: "#2B4BEB",
                 confirmButtonColor: "#2B4BEB",
                 customClass: {
                     container: "swal",
-                } 
+                }, 
         }).then((result) => {
             if(result.isConfirmed){
                 Swal.fire({
                     title:"Cargamos los prestamos que simulaste la ultima vez!",
-                    width: "40%",
+                    customClass: {
+                        container: "swal",
+                    },
                     backdrop: "true",
                     color: "#2B4BEB",
                     confirmButtonColor: "#2B4BEB",
@@ -272,7 +285,9 @@ function cargarPrestamos(){
                 Swal.fire({
                     title: "Borramos el prestamo.",
                     text:'Podes simular uno nuevo.',
-                    width: "40%",
+                    customClass: {
+                        container: "swal",
+                    },
                     backdrop: "true",
                     color: "#2B4BEB",
                     confirmButtonColor: "#2B4BEB",

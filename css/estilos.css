@@ -49,5 +49,14 @@
   font-size: 1.2rem;
 }
 
+.swal {
+  width: 40%;
+}
+@media all and (max-width: 768px) {
+  .swal{
+      width: 90%;
+  }
+}
+
 
 
