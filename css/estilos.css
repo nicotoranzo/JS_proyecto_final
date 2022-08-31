@@ -76,15 +76,6 @@ body {
   font-size: 1.2rem;
 }
 
-/*.list {
-  color: #2B4BEB;
-  font-weight: bold;
-  border: none;
-}
-
-.list :hover {
-  color: #111;
-}*/
 .swal {
   width: 100%;
 }
