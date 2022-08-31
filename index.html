@@ -31,9 +31,9 @@
     </div>
 
     <!-- Dolar -->
-    <div id="dolar" class="container p-2 mb-3">
+    <div id="dolar" class="container dolar p-1 mb-3">
       <div class="row ">
-        <ul id="cotizaciones" class="list-group list-group-horizontal-lg d-flex justify-content-lg-between"></ul>
+        <ul id="cotizaciones" class="list-group list-group-horizontal-lg d-flex justify-content-lg-around"></ul>
       </div>
             
     </div>
@@ -43,46 +43,51 @@
     <div class="height">
 
     <!-- Nombre-->  
-      <div class="container principal pt-2 mb-3">      
-          <form id="username">
-            <div class='row mb-3 mx-2 d-flex justify-content-lg-between'>
-              <label class="form-label col-12 col-lg-6 titulos" for='username'>¿Como es tu nombre?</label>
-              <input class="col-12 col-lg-4 main m-2" name='full-name' type='text'/>
-              <input class="col-12 col-lg-auto main m-2" type="submit" value="Enviar">         
-            </div>
-          </form>
-        </div>
+      <div class="container principal pt-2 mb-3">
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3 d-flex align-content-stretch">
+            <form id="username">
+              <div class='row mb-3 mx-2 d-flex justify-content-lg-between'>
+                <label class="form-label col-12 titulos" for='username'>¿Como es tu nombre?</label>
+                <input class="col-12 main m-2" name='full-name' type='text'/>
+                <input class="col-12 main m-2" type="submit" value="Enviar">         
+              </div>
+            </form>
+          </div>        
+          <div class="col-12 col-md-6 mb-3 d-flex align-content-stretch">                 
+              <form id="formulario">          
+                <div class="row mb-3 mx-2 d-flex justify-content-lg-between">
+                  <label class="form-label col-12 titulos" for='cantidadPrestamos'>¿Cuantos prestamos queres solicitar?</label>
+                  <input class="col-12 main m-2" id='cantidadPrestamos' name='full-name' type='number'/ placeholder="Podes cotizar hasta 2 prestamos">
+                  <input class="col-12 main m-2" type="submit" value="Enviar">
+                </div>               
+              </form>        
+          </div> 
+        </div>     
+      </div>
     <!-- /Nombre-->
 
     <!-- Prestamo--> 
-        <div class="container principal pt-2 mb-3">    
-            <form id="formulario">          
-              <div class="row mb-3 mx-2 d-flex justify-content-lg-between">
-                <label class="form-label col-12 col-lg-6 titulos" for='cantidadPrestamos'>¿Cuantos prestamos queres solicitar?</label>
-                <input class="col-12 col-lg-4 main m-2" id='cantidadPrestamos' name='full-name' type='number'/>
-                <input class="col-12 col-lg-auto main m-2" type="submit" value="Enviar">
-              </div>               
-            </form>
-        </div>    
+    
         <div id="display" class="container principal mb-3 d-none">
           <div class='row col-sm-12 mb-1'>
             <form id="formPrestamo">
               <div class="titulos mb-3 p-1 pt-3"> Necesitamos estos datos para cotizar tu prestamo:
               </div>
               <div class="row col-sm-12 mb-1 mx-2">
-                <label class="form-label col-12 col-lg-4" for='capital'>Capital (Minimo $10.000)</label>
-                <input class="col-12 col-lg-8 main mb-2" id='capital' name='capital' type='number'/>
+                <label class="form-label col-12 col-lg-4" for='capital'>Ingresa el capital que necesitás:</label>
+                <input class="col-12 col-lg-8 main mb-2" id='capital' name='capital' type='number' placeholder="(el mínimo $10.000)" />
               </div>
               <div class='row col-sm-12 mb-1 mx-2'>
-                <label class="form-label col-12 col-lg-4" for='cuotas'>Cuotas (Maximo 60)</label>
-                <input class="col-12 col-lg-8 main mb-2" id='cuotas' name='cuotas' type='number' />
+                <label class="form-label col-12 col-lg-4" for='cuotas'>¿En cuantas cuotas queres pagar?</label>
+                <input class="col-12 col-lg-8 main mb-2" id='cuotas' name='cuotas' type='number' placeholder="(el máximo es 60)" />
               </div>
               <div class='row col-sm-12 mb-1 mx-2'>
-                <label class="form-label col-12 col-lg-4" for='interes'>Interes anual:</label>
+                <label class="form-label col-12 col-lg-4" for='interes'>¿Que interes anual necesitás?</label>
                 <input class="col-12 col-lg-8 mb-2 main" id='interes' name='interes' type="number"></input>
               </div>
               <div class='row mb-3 mx-2 d-flex justify-content-center'>
-                <input class="col-12 col-lg-6 main m-2" type="submit" value="Enviar">
+                <input class="col-12 col-lg-6 main m-2" type="submit" value="¡Cotizar!">
               </div>  
             </form>
           </div>

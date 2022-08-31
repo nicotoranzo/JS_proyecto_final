@@ -206,7 +206,7 @@ function prestar(){
             node.innerHTML = `<h3>Solicitaste: 
             $${prestamo.capital.toLocaleString(undefined,{minimumFractionDigits: 2,
                 maximumFractionDigits: 2})}</h3>
-            <p>El interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
+            <p>El interés que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
             <p>En: ${prestamo.cantidadCuotas} cuotas</p>
             <p>Cada cuota será de: 
             $${prestamo.cuotaMes.toLocaleString(undefined, {
@@ -235,7 +235,7 @@ function cargarPrestamos(){
         // Carga la información
         Swal.fire({
                 title: "Hola " + name + ",",
-                text: '¿Queres cargar el prestamo guardado o borrarlo?',
+                text: '¿Querés cargar el prestamo guardado o borrarlo?',
                 icon: 'warning',
                 showDenyButton: true,
                 confirmButtonText: 'Cargar',
@@ -265,9 +265,9 @@ function cargarPrestamos(){
                 classContenedor()
                 let node= document.createElement("li")
                 node.className= "list-group-item"
-                node.innerHTML = `<h3>La ultima vez solicitaste: 
+                node.innerHTML = `<h3>La última vez solicitaste: 
                 $${prestamo.capital}</h3>
-                <p>El interes que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
+                <p>El interés que querés pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
                 <p>En: ${prestamo.cantidadCuotas} cuotas</p>
                 <p>Cada cuota será de: 
                 $${prestamo.cuotaMes.toLocaleString(undefined, {
@@ -284,7 +284,7 @@ function cargarPrestamos(){
             else if(result.isDenied){
                 Swal.fire({
                     title: "Borramos el prestamo.",
-                    text:'Podes simular uno nuevo.',
+                    text:'Completa tu nombre y podes simular uno nuevo.',
                     customClass: {
                         container: "swal",
                     },
@@ -294,6 +294,7 @@ function cargarPrestamos(){
                     icon:"info",
                 })
                 localStorage.removeItem("guardaPrestamos")
+                localStorage.removeItem("name")
             }
         })
     }
@@ -302,7 +303,7 @@ function cargarPrestamos(){
 
 cargarPrestamos()
 
-// falta corregir este fetch
+
 
 fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales").
 then( (resp) => resp.json() )
@@ -313,7 +314,7 @@ then( (resp) => resp.json() )
             let dolar = document.getElementById("dolar")
             let cotizaciones = document.getElementById("cotizaciones")
             let nodeDolar = document.createElement('li')
-            nodeDolar.className= "list-group-item list-group-item-success list"
+            nodeDolar.className= "list-group-item"
             nodeDolar.innerHTML = `
                 <p>${post.casa.nombre}: $${post.casa.venta}</p>
             `
@@ -326,29 +327,7 @@ then( (resp) => resp.json() )
 
 
 
-/*
-let data = {
-    service_id: 'service_thgpx3t',
-    template_id: 'service_thgpx3t',
-    user_id: 'KS82fBDaZBFAx1HUL',
-    template_params: {
-        'username': 'James',
-        'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
-    }
-};
- 
-fetch('https://api.emailjs.com/api/v1.0/email/send', {
-    type: 'POST',
-    data: JSON.stringify(data),
-    contentType: 'application/json'
-}).then(function() {
-    alert('Your mail is sent!');
-}).catch(function(error) {
-    alert('Oops... ' + JSON.stringify(error));
-});
-       
-
-                    */                    
+                
                    
 
         
