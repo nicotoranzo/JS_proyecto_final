@@ -58,7 +58,7 @@ function validateForm(event){
 const contenedor = document.getElementById("contenedor")
 const lista = document.getElementById("lista")
 function classContenedor() {
-        contenedor.className= "container principal subtitulos p-3"
+        contenedor.className= "container principal subtitulos p-3 mb-3"
         lista.className="list-group list-group-flush"
     }
 
