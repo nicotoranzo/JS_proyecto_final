@@ -74,7 +74,7 @@ function prestamoNuevo(){
         else{
             Swal.fire({
                 title: "Hola " + name + ",",
-                text: 'Solo podes solicitar hasta 2 prestamos',
+                text: 'Solo podés solicitar hasta 2 prestamos',
                 icon: 'error',
                 confirmButtonText: 'Cerrar',
                 customClass: {
@@ -91,8 +91,8 @@ function prestamoNuevo(){
     else{
         Swal.fire({
                 title: "Hola",
-                text: 'Por favor carga tu nombre antes de continuar',
-                icon: 'error',
+                text: 'Por favor cargá tu nombre antes de continuar',
+                icon: 'warning',
                 confirmButtonText: 'Cerrar',
                 customClass: {
                     container: "swal",
@@ -152,8 +152,6 @@ function prestar(){
         localStorage.setItem("guardaPrestamos", JSON.stringify(prestamos))
         }
         if (prestamos.length < 2){
-        /*este if es para que no pueda crear mas prestamos despues de 2
-        pero si pone 1 le deja llegar a 2, falta resolver*/        
             if(prestamo.capital >= 10000){
                 if(prestamo.cantidadCuotas <=60){
                     if (prestamo.interes >=(20/100)){    
@@ -165,7 +163,7 @@ function prestar(){
                     else{
                         Swal.fire({
                         title: "Hola " + name + ",",
-                        text: 'El interes anual minimo es 20%',
+                        text: 'El interés anual mínimo es 20%',
                         icon: 'error',
                         confirmButtonText: 'Cerrar',
                         customClass: {
@@ -200,7 +198,7 @@ function prestar(){
 
                 Swal.fire({
                         title: "Hola " + name + ",",
-                        text: 'El monto minimo a solicitar es $10.000',
+                        text: 'El monto mínimo a solicitar es $10.000',
                         icon: 'error',
                         confirmButtonText: 'Cerrar',
                         customClass: {
@@ -217,7 +215,7 @@ function prestar(){
         else{
             Swal.fire({
                         title: "Hola " + name + ",",
-                        text: 'Alcanzaste el maximo de prestamos posibles',
+                        text: 'Alcanzaste el máximo de prestamos posibles',
                         icon: 'error',
                         confirmButtonText: 'Cerrar',
                         customClass: {
@@ -314,7 +312,7 @@ function cargarPrestamos(){
             else if(result.isDenied){
                 Swal.fire({
                     title: "Borramos el prestamo.",
-                    text:'Completa tu nombre y podes simular uno nuevo.',
+                    text:'Completá tu nombre y podés simular uno nuevo.',
                     customClass: {
                         container: "swal",
                     },
