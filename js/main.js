@@ -65,27 +65,45 @@ function classContenedor() {
 
 function prestamoNuevo(){    
     
-    if(cantidadPrestamos<=2 /*&& poner aca mayor a uno*/){
+    if(localStorage.getItem('name') !== null){
+        if(cantidadPrestamos<=2){
 
-    let display = document.getElementById("display")
-    display.classList.remove("d-none")        
+        let display = document.getElementById("display")
+        display.classList.remove("d-none")        
+        }
+        else{
+            Swal.fire({
+                title: "Hola " + name + ",",
+                text: 'Solo podes solicitar hasta 2 prestamos',
+                icon: 'error',
+                confirmButtonText: 'Cerrar',
+                customClass: {
+                    container: "swal",
+                },
+                backdrop: "true",
+                timer: 3000,
+                timerProgressBar: true,
+                color: "#2B4BEB",
+                confirmButtonColor: "#2B4BEB",
+            })
+        }
     }
     else{
         Swal.fire({
-            title: "Hola " + name + ",",
-            text: 'Solo podes solicitar hasta 2 prestamos',
-            icon: 'error',
-            confirmButtonText: 'Cerrar',
-            customClass: {
-                container: "swal",
-            },
-            backdrop: "true",
-            timer: 3000,
-            timerProgressBar: true,
-            color: "#2B4BEB",
-            confirmButtonColor: "#2B4BEB",
-        })
-    }
+                title: "Hola",
+                text: 'Por favor carga tu nombre antes de continuar',
+                icon: 'error',
+                confirmButtonText: 'Cerrar',
+                customClass: {
+                    container: "swal",
+                },
+                backdrop: "true",
+                timer: 3000,
+                timerProgressBar: true,
+                color: "#2B4BEB",
+                confirmButtonColor: "#2B4BEB",
+            })
+    }    
 }
 
 let formPrestamo = document.getElementById("formPrestamo")
@@ -138,11 +156,28 @@ function prestar(){
         pero si pone 1 le deja llegar a 2, falta resolver*/        
             if(prestamo.capital >= 10000){
                 if(prestamo.cantidadCuotas <=60){
-                    tasa(prestamo.interes)
-                    cuotaMensual(prestamo.capital, tasa(prestamo.interes), prestamo.cantidadCuotas)
-                    devolucionTotal(prestamo.cuotaMes, prestamo.cantidadCuotas) 
-                    prestamos.push({...prestamo})
-                    console.log(prestamos)//esto despues hay que borrarlo
+                    if (prestamo.interes >=(20/100)){    
+                        tasa(prestamo.interes)
+                        cuotaMensual(prestamo.capital, tasa(prestamo.interes), prestamo.cantidadCuotas)
+                        devolucionTotal(prestamo.cuotaMes, prestamo.cantidadCuotas) 
+                        prestamos.push({...prestamo})
+                    }
+                    else{
+                        Swal.fire({
+                        title: "Hola " + name + ",",
+                        text: 'El interes anual minimo es 20%',
+                        icon: 'error',
+                        confirmButtonText: 'Cerrar',
+                        customClass: {
+                            container: "swal",
+                        },
+                        backdrop: "true",
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: "#2B4BEB",
+                        confirmButtonColor: "#2B4BEB",
+                        })
+                    }    
                 }
                 else{                        
                     Swal.fire({
@@ -204,8 +239,7 @@ function prestar(){
             let node= document.createElement("li")
             node.className= "list-group-item"
             node.innerHTML = `<h3>Solicitaste: 
-            $${prestamo.capital.toLocaleString(undefined,{minimumFractionDigits: 2,
-                maximumFractionDigits: 2})}</h3>
+            $${prestamo.capital}</h3>
             <p>El interés que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
             <p>En: ${prestamo.cantidadCuotas} cuotas</p>
             <p>Cada cuota será de: 
@@ -226,14 +260,11 @@ function prestar(){
 }
 
 
-
-
 let prestamosLS 
 
 function cargarPrestamos(){
     if (localStorage.getItem('guardaPrestamos') !== null) {
-        // Carga la información
-        Swal.fire({
+                Swal.fire({
                 title: "Hola " + name + ",",
                 text: '¿Querés cargar el prestamo guardado o borrarlo?',
                 icon: 'warning',
@@ -259,7 +290,6 @@ function cargarPrestamos(){
                     icon:"success",
                 })
                 prestamosLS = JSON.parse(localStorage.getItem('guardaPrestamos'));
-                console.log(prestamosLS)/*Esto despues hay que borrarlo*/
                 for (const prestamo of prestamosLS){
                    
                 classContenedor()
@@ -304,11 +334,9 @@ function cargarPrestamos(){
 cargarPrestamos()
 
 
-
 fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales").
 then( (resp) => resp.json() )
 .then( (data) => {
-        console.log(data)
         data.forEach((post) => {
             if(post.casa.venta != 0 && post.casa.nombre !== "Argentina" && post.casa.nombre !== "Dolar"){
             let dolar = document.getElementById("dolar")
