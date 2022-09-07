@@ -130,9 +130,9 @@ prestamo.devolucionTotal = cuotaMensual * cuotas
 
 
 function prestar(){
-        let saveButton = document.getElementById("save-button")
+        /*let saveButton = document.getElementById("save-button")
         saveButton.className="container btn btnModified"
-        saveButton.addEventListener("click", guardarPrestamos)
+        saveButton.addEventListener("click", guardarPrestamos)*/
 
         function guardarPrestamos(){
         Swal.fire({
@@ -154,7 +154,10 @@ function prestar(){
         if (prestamos.length < 2){
             if(prestamo.capital >= 10000){
                 if(prestamo.cantidadCuotas <=60){
-                    if (prestamo.interes >=(20/100)){    
+                    if (prestamo.interes >=(20/100)){
+                        let saveButton = document.getElementById("save-button")
+                        saveButton.className="container btn btnModified"
+                        saveButton.addEventListener("click", guardarPrestamos)    
                         tasa(prestamo.interes)
                         cuotaMensual(prestamo.capital, tasa(prestamo.interes), prestamo.cantidadCuotas)
                         devolucionTotal(prestamo.cuotaMes, prestamo.cantidadCuotas) 
@@ -237,7 +240,10 @@ function prestar(){
             let node= document.createElement("li")
             node.className= "list-group-item"
             node.innerHTML = `<h3>Solicitaste: 
-            $${prestamo.capital}</h3>
+            $${parseInt(prestamo.capital).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                })}</h3>
             <p>El interés que queres pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
             <p>En: ${prestamo.cantidadCuotas} cuotas</p>
             <p>Cada cuota será de: 
@@ -278,7 +284,7 @@ function cargarPrestamos(){
         }).then((result) => {
             if(result.isConfirmed){
                 Swal.fire({
-                    title:"Cargamos los prestamos que simulaste la ultima vez!",
+                    title:"¡Cargamos los prestamos que simulaste la ultima vez!",
                     customClass: {
                         container: "swal",
                     },
@@ -294,7 +300,10 @@ function cargarPrestamos(){
                 let node= document.createElement("li")
                 node.className= "list-group-item"
                 node.innerHTML = `<h3>La última vez solicitaste: 
-                $${prestamo.capital}</h3>
+                $${parseInt(prestamo.capital).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                })}</h3>
                 <p>El interés que querés pagar es ${(prestamo.interes * 100).toFixed(2)}%</p>
                 <p>En: ${prestamo.cantidadCuotas} cuotas</p>
                 <p>Cada cuota será de: 
